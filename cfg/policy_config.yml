@@ -1,0 +1,20 @@
+language: "zh"
+
+pipeline:
+- name: "tokenizer_jieba"
+- name: "bert_vectors_featurizer"
+  ip: '192.168.108.197'
+  port: 5555
+  port_out: 5556
+  show_server_config: True
+  timeout: 10000
+- name: "ner_synonyms"
+- name: "intent_entity_featurizer_regex"
+- name: "ner_crf"
+- name: "intent_classifier_tensorflow_embedding"
+
+policies:
+- name: KerasPolicy
+- name: EmbeddingPolicy
+- name: MappingPolicy
+

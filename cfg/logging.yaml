@@ -1,0 +1,35 @@
+version: 1
+disable_existing_loggers: False
+# output format
+formatters:
+  simple:
+    format: "%(message)s"
+  default:
+    format: " [%(asctime)s] [%(levelname)s] [%(filename)s -- %(funcName)s:%(lineno)s] [%(message)s]"
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: default
+    stream: ext://sys.stdout
+  info_file_handler:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: default
+    filename: ./log/info.log
+    maxBytes: 134217728 # 128M
+    backupCount: 20 # most 20 extensions
+    encoding: utf-8
+  error_file_handler:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: default
+    filename: ./log/errors.log
+    maxBytes: 134217728 # 128M
+    backupCount: 20 # most 20 extensions
+    encoding: utf-8
+
+root:
+  level: INFO
+  # 生产环境下，最好把console的handler除掉
+  handlers: [console, info_file_handler, error_file_handler]

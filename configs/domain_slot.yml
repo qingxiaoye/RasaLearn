@@ -1,0 +1,15 @@
+intents:
+  - greet
+actions:
+  - actions.actions.FetchProfileAction
+  - utter_welcome_premium
+slots:
+  account_type:
+    type: text
+entities:
+  - account_type
+
+templates:
+  utter_welcome_premium:
+    - text: "欢迎{account_type}光临"
+
